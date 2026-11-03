@@ -1,0 +1,24 @@
+{
+  "name": "dispatch-server",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "cloudflare": {
+    "bindings": {
+      "POSTMAN_API_KEY": {
+        "description": "The shared Postman account's API key (create one at https://go.postman.co/settings/me/api-keys). The proxy serves every user through this one account."
+      },
+      "ADMIN_PASSWORD": {
+        "description": "Needed only when REQUIRE_AUTH is \"false\": the password that unlocks the admin panel via POST /auth/admin-login. Generate one with `openssl rand -hex 24`."
+      },
+      "DB": {
+        "description": "D1 database storing users, tokens, settings, uid maps and the audit log. Created automatically on first deploy; the Worker migrates its schema itself on the first request."
+      }
+    }
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
